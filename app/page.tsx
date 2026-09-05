@@ -44,7 +44,7 @@ export default async function HomePage() {
             <a className="transition hover:text-brand-700" href="#beneficios">Nosotros</a>
           </nav>
           <a href="/admin/login" className="rounded-full border border-brand-700 px-4 py-2 text-xs font-bold text-brand-700 transition hover:bg-brand-700 hover:text-white">
-            Administración
+            Iniciar sesión
           </a>
         </div>
       </header>
