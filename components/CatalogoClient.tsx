@@ -13,7 +13,9 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
 
   const filtrados = useMemo(() => {
     return productos.filter((p) => {
-      const coincideCategoria = categoria === "Todos" || p.categoria === categoria;
+      const coincideCategoria =
+        categoria === "Todos" ||
+        (categoria === "Ofertas" ? p.tipo === "oferta" : p.categoria === categoria);
       const coincideBusqueda = p.nombre
         .toLowerCase()
         .includes(busqueda.trim().toLowerCase());
@@ -24,7 +26,11 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
   return (
     <div>
       <div className="mb-6 flex flex-col gap-4">
+        <label className="sr-only" htmlFor="buscar-producto">
+          Buscar productos
+        </label>
         <input
+          id="buscar-producto"
           type="search"
           placeholder="Buscar producto..."
           value={busqueda}
@@ -32,7 +38,7 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
           className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
         />
         <CategoryFilter
-          categorias={CATEGORIAS}
+          categorias={[...CATEGORIAS, "Ofertas"]}
           activa={categoria}
           onChange={setCategoria}
         />
@@ -59,3 +65,4 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
     </div>
   );
 }
+
