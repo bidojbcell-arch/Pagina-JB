@@ -2,13 +2,18 @@
 
 import Image from "next/image";
 import { Producto } from "@/lib/types";
+import { canAddToCart } from "@/lib/cart";
 
 export default function ProductCard({
   producto,
   onClick,
+  onAddToCart,
+  inCart,
 }: {
   producto: Producto;
   onClick: () => void;
+  onAddToCart: () => void;
+  inCart: number;
 }) {
   const portada = producto.imagenes?.[0];
   const esOferta = producto.tipo === "oferta" && producto.precio_oferta !== null;
@@ -17,10 +22,8 @@ export default function ProductCard({
     `RD$${precio.toLocaleString("es-DO")}`;
 
   return (
-    <button
-      onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white text-left shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
-    >
+    <article className="group flex flex-col overflow-hidden rounded-2xl bg-white text-left shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover">
+    <button onClick={onClick} aria-label={`Ver detalles de ${producto.nombre}`} className="flex flex-1 flex-col text-left">
       <div className="relative aspect-square w-full overflow-hidden bg-slate-100">
         {portada ? (
           <Image
@@ -90,6 +93,11 @@ export default function ProductCard({
         </div>
       </div>
     </button>
+    <div className="px-3 pb-4 sm:px-4">
+      <button onClick={onAddToCart} disabled={!canAddToCart(producto) || inCart >= producto.stock} className="min-h-11 w-full rounded-xl bg-brand-700 px-2 py-3 text-xs font-bold text-white hover:bg-brand-800 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500 sm:text-sm">
+        {producto.stock === 0 ? "Agotado" : precioVisible === null ? "Consultar precio" : inCart >= producto.stock ? "Máximo disponible" : inCart > 0 ? `Agregar otro (${inCart})` : "Agregar al carrito"}
+      </button>
+    </div>
+    </article>
   );
 }
-
