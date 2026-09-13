@@ -4,13 +4,18 @@ import Image from "next/image";
 import { useState } from "react";
 import { Producto } from "@/lib/types";
 import { whatsappLinkProducto } from "@/lib/whatsapp";
+import { canAddToCart } from "@/lib/cart";
 
 export default function ProductModal({
   producto,
   onClose,
+  onAddToCart,
+  inCart,
 }: {
   producto: Producto;
   onClose: () => void;
+  onAddToCart: () => void;
+  inCart: number;
 }) {
   const [activa, setActiva] = useState(0);
   const imagenes = producto.imagenes?.length ? producto.imagenes : [];
@@ -94,11 +99,14 @@ export default function ProductModal({
             </p>
           )}
 
+          <button onClick={onAddToCart} disabled={!canAddToCart(producto) || inCart >= producto.stock} className="mt-4 rounded-xl bg-brand-700 px-5 py-3 font-semibold text-white hover:bg-brand-800 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500">
+            {producto.stock === 0 ? "Agotado" : precioVisible === null ? "Consulta el precio por WhatsApp" : inCart >= producto.stock ? "Máximo disponible en carrito" : "Agregar al carrito"}
+          </button>
           <a
             href={whatsappLinkProducto(producto.nombre, precioVisible)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 font-semibold text-white shadow-md transition hover:brightness-95"
+            className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 font-semibold text-white shadow-md transition hover:brightness-95"
           >
             <svg viewBox="0 0 32 32" className="h-5 w-5" fill="currentColor">
               <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.35.687 4.54 1.872 6.383L4 29l7.805-1.837A11.94 11.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3zm0 21.7a9.66 9.66 0 0 1-4.936-1.352l-.354-.21-4.63 1.09 1.114-4.512-.23-.365A9.67 9.67 0 0 1 6.3 15c0-5.348 4.352-9.7 9.701-9.7 5.348 0 9.699 4.352 9.699 9.7 0 5.349-4.351 9.7-9.699 9.7z" />
@@ -110,4 +118,3 @@ export default function ProductModal({
     </div>
   );
 }
-
