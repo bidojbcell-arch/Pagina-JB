@@ -2,6 +2,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { Producto } from "@/lib/types";
 import CatalogoClient from "@/components/CatalogoClient";
+import StorefrontTrust from "@/components/StorefrontTrust";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { whatsappLink } from "@/lib/whatsapp";
 
@@ -33,17 +34,16 @@ export default async function HomePage() {
         Envíos rápidos · Atención personalizada · Equipos con garantía
       </div>
 
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 px-3 py-3 sm:flex-nowrap sm:gap-4 sm:px-5 sm:py-4">
           <a href="/" className="shrink-0" aria-label="Inicio JBCELL">
-            <Image src="/jbcell-logo.svg" alt="JBCELL" width={205} height={61} priority className="h-12 w-auto sm:h-14" />
+            <Image src="/jbcell-logo.svg" alt="JBCELL" width={205} height={61} priority className="h-8 w-auto sm:h-14" />
           </a>
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
-            <a className="transition hover:text-brand-700" href="#categorias">Categorías</a>
+          <nav aria-label="Navegación principal" className="order-3 mt-3 flex basis-full justify-center gap-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-600 sm:order-none sm:mt-0 sm:basis-auto sm:flex-1 sm:justify-center sm:border-0 sm:pt-0 sm:text-sm">
             <a className="transition hover:text-brand-700" href="#productos">Productos</a>
-            <a className="transition hover:text-brand-700" href="#beneficios">Nosotros</a>
+            <a className="transition hover:text-brand-700" href="#ofertas">Ofertas</a>
           </nav>
-          <a href="/admin/login" className="rounded-full border border-brand-700 px-4 py-2 text-xs font-bold text-brand-700 transition hover:bg-brand-700 hover:text-white">
+          <a href="/admin/login" className="shrink-0 rounded-full border border-brand-700 px-3 py-2 text-[11px] font-bold text-brand-700 transition hover:bg-brand-700 hover:text-white sm:px-4 sm:text-xs">
             Iniciar sesión
           </a>
         </div>
@@ -53,10 +53,10 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-24">
           <div className="relative z-10">
             <p className="mb-4 inline-flex rounded-full bg-brand-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-800">
-              Tecnología que se adapta a ti
+              JBCELL · Conecta tu mundo
             </p>
             <h1 className="max-w-3xl text-4xl font-black leading-[0.98] tracking-tight text-brand-900 sm:text-6xl">
-              Tecnología a tu <span className="text-accent-600">alcance.</span>
+              Tecnología que te <span className="text-accent-600">acompaña.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
               Celulares, accesorios y equipos para conectar tu mundo. Compra con atención cercana, productos seleccionados y precios claros.
@@ -112,18 +112,46 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="productos" className="border-y border-brand-100 bg-white">
+      <section id="ofertas" className="border-y border-accent-100 bg-accent-50">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-700">Ofertas JBCELL</p>
+            <h2 className="mt-1 text-2xl font-black tracking-tight text-brand-900">Equipos destacados para ti</h2>
+          </div>
+          <a href="#productos" className="w-fit rounded-xl bg-accent-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-accent-700">
+            Ver productos disponibles
+          </a>
+        </div>
+      </section>
+
+      <section id="productos" className="border-b border-brand-100 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16">
           <div className="mb-8"><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Catálogo JBCELL</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Novedades y productos disponibles</h2><p className="mt-2 text-slate-500">Elige tu favorito y escríbenos para confirmar disponibilidad.</p></div>
           <CatalogoClient productos={productos} />
         </div>
       </section>
 
-      <section id="beneficios" className="bg-brand-900 py-16 text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-3">
-          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-300">Compra con tranquilidad</p><h2 className="mt-3 text-3xl font-black leading-tight">JBCELL, tecnología que te acompaña.</h2></div>
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-6"><h3 className="font-bold">Atención personalizada</h3><p className="mt-2 text-sm leading-6 text-brand-100">Te orientamos para que elijas el equipo y accesorio que realmente necesitas.</p></div>
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-6"><h3 className="font-bold">Calidad y respaldo</h3><p className="mt-2 text-sm leading-6 text-brand-100">Productos seleccionados y una experiencia clara de principio a fin.</p></div>
+      <StorefrontTrust />
+
+      <section aria-labelledby="testimonios-title" className="bg-brand-50 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Historias reales</p>
+            <h2 id="testimonios-title" className="mt-2 text-3xl font-black tracking-tight text-brand-900">Cerca de ti en cada compra.</h2>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              ["LM", "Laura M.", "Me ayudaron a elegir un equipo que se ajusta a lo que necesito. La atención fue clara y rápida."],
+              ["CR", "Carlos R.", "Encontré el accesorio que buscaba y coordinaron todo de forma muy sencilla por WhatsApp."],
+              ["AP", "Andrea P.", "Mi compra llegó bien presentada y tuve acompañamiento para resolver mis dudas antes de decidir."],
+            ].map(([initials, name, quote]) => (
+              <figure key={name} className="rounded-2xl border border-brand-100 bg-white p-6 shadow-card">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-xs font-black text-white">{initials}</div>
+                <blockquote className="mt-5 text-sm leading-6 text-slate-600">“{quote}”</blockquote>
+                <figcaption className="mt-5 text-sm font-bold text-brand-800">{name}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -138,3 +166,4 @@ export default async function HomePage() {
     </main>
   );
 }
+
