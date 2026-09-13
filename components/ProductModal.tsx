@@ -14,6 +14,8 @@ export default function ProductModal({
 }) {
   const [activa, setActiva] = useState(0);
   const imagenes = producto.imagenes?.length ? producto.imagenes : [];
+  const esOferta = producto.tipo === "oferta" && producto.precio_oferta !== null;
+  const precioVisible = esOferta ? producto.precio_oferta : producto.precio;
 
   return (
     <div
@@ -70,10 +72,17 @@ export default function ProductModal({
             {producto.categoria}
           </span>
           <h2 className="text-2xl font-bold text-slate-900">{producto.nombre}</h2>
-          {producto.precio ? (
-            <span className="text-2xl font-bold text-brand-700">
-              RD${producto.precio.toLocaleString("es-DO")}
-            </span>
+          {precioVisible !== null ? (
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="text-2xl font-bold text-brand-700">
+                RD${precioVisible.toLocaleString("es-DO")}
+              </span>
+              {esOferta && producto.precio !== null && (
+                <span className="text-base text-slate-400 line-through">
+                  RD${producto.precio.toLocaleString("es-DO")}
+                </span>
+              )}
+            </div>
           ) : (
             <span className="text-base font-medium text-slate-400">
               Consultar precio
@@ -86,7 +95,7 @@ export default function ProductModal({
           )}
 
           <a
-            href={whatsappLinkProducto(producto.nombre, producto.precio)}
+            href={whatsappLinkProducto(producto.nombre, precioVisible)}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 font-semibold text-white shadow-md transition hover:brightness-95"
@@ -101,3 +110,4 @@ export default function ProductModal({
     </div>
   );
 }
+
