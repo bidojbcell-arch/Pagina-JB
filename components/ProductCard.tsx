@@ -11,6 +11,10 @@ export default function ProductCard({
   onClick: () => void;
 }) {
   const portada = producto.imagenes?.[0];
+  const esOferta = producto.tipo === "oferta" && producto.precio_oferta !== null;
+  const precioVisible = esOferta ? producto.precio_oferta : producto.precio;
+  const precioFormateado = (precio: number) =>
+    `RD$${precio.toLocaleString("es-DO")}`;
 
   return (
     <button
@@ -31,11 +35,28 @@ export default function ProductCard({
             Sin imagen
           </div>
         )}
-        {producto.destacado && (
-          <span className="absolute left-2 top-2 rounded-full bg-brand-600 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow">
-            Destacado
-          </span>
-        )}
+        <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
+          {esOferta && (
+            <span className="rounded-full bg-red-600 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow">
+              Oferta
+            </span>
+          )}
+          {producto.tipo === "combo" && (
+            <span className="rounded-full bg-slate-900 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow">
+              Combo
+            </span>
+          )}
+          {producto.destacado && (
+            <span className="rounded-full bg-brand-600 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow">
+              Destacado
+            </span>
+          )}
+          {producto.stock === 0 && (
+            <span className="rounded-full bg-slate-600 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white shadow">
+              Agotado
+            </span>
+          )}
+        </div>
       </div>
       <div className="flex flex-1 flex-col gap-1 p-4">
         <span className="text-xs font-medium uppercase tracking-wide text-brand-600">
@@ -50,10 +71,17 @@ export default function ProductCard({
           </p>
         )}
         <div className="mt-auto pt-2">
-          {producto.precio ? (
-            <span className="text-lg font-bold text-slate-900">
-              RD${producto.precio.toLocaleString("es-DO")}
-            </span>
+          {precioVisible !== null ? (
+            <div className="flex flex-col items-start gap-0.5 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-2">
+              <span className="max-w-full break-words text-base font-bold text-slate-900 sm:text-lg">
+                {precioFormateado(precioVisible)}
+              </span>
+              {esOferta && producto.precio !== null && (
+                <span className="max-w-full break-words text-sm text-slate-400 line-through">
+                  {precioFormateado(producto.precio)}
+                </span>
+              )}
+            </div>
           ) : (
             <span className="text-sm font-medium text-slate-400">
               Consultar precio
@@ -64,3 +92,4 @@ export default function ProductCard({
     </button>
   );
 }
+
