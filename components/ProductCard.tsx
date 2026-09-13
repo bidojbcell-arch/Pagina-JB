@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Producto } from "@/lib/types";
 import { canAddToCart } from "@/lib/cart";
+import { whatsappLinkProducto } from "@/lib/whatsapp";
 
 export default function ProductCard({
   producto,
@@ -97,6 +98,14 @@ export default function ProductCard({
       <button onClick={onAddToCart} disabled={!canAddToCart(producto) || inCart >= producto.stock} className="min-h-11 w-full rounded-xl bg-brand-700 px-2 py-3 text-xs font-bold text-white hover:bg-brand-800 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500 sm:text-sm">
         {producto.stock === 0 ? "Agotado" : precioVisible === null ? "Consultar precio" : inCart >= producto.stock ? "Máximo disponible" : inCart > 0 ? `Agregar otro (${inCart})` : "Agregar al carrito"}
       </button>
+      <a
+        href={whatsappLinkProducto(producto.nombre, precioVisible)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 flex min-h-11 w-full items-center justify-center rounded-xl border border-[#25D366] px-2 py-3 text-xs font-bold text-[#128C4B] transition hover:bg-[#25D366] hover:text-white sm:text-sm"
+      >
+        Pedir por WhatsApp
+      </a>
     </div>
     </article>
   );
