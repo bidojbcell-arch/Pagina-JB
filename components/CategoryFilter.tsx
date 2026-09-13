@@ -12,11 +12,15 @@ export default function CategoryFilter({
   const opciones = ["Todos", ...categorias];
 
   return (
-    <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1">
+    <nav
+      aria-label="Filtrar productos por categoría"
+      className="scrollbar-hide flex gap-2 overflow-x-auto pb-1"
+    >
       {opciones.map((cat) => (
         <button
           key={cat}
           onClick={() => onChange(cat)}
+          aria-pressed={activa === cat}
           className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition ${
             activa === cat
               ? "border-brand-600 bg-brand-600 text-white shadow"
@@ -26,6 +30,7 @@ export default function CategoryFilter({
           {cat}
         </button>
       ))}
-    </div>
+    </nav>
   );
 }
+
