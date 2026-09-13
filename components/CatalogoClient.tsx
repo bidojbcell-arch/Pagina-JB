@@ -5,11 +5,22 @@ import { Producto, CATEGORIAS } from "@/lib/types";
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import CategoryFilter from "@/components/CategoryFilter";
+import CartDrawer from "@/components/CartDrawer";
+import { CartItem, addToCart, setCartQuantity } from "@/lib/cart";
 
 export default function CatalogoClient({ productos }: { productos: Producto[] }) {
   const [categoria, setCategoria] = useState("Todos");
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+
+  function handleAdd(product: Producto) {
+    setCart((items) => addToCart(items, product));
+    setAnnouncement(`${product.nombre} agregado al carrito.`);
+  }
 
   const filtrados = useMemo(() => {
     return productos.filter((p) => {
@@ -26,6 +37,14 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
   return (
     <div>
       <div className="mb-6 flex flex-col gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-slate-500">Agrega productos y envía tu pedido por WhatsApp.</p>
+          <button onClick={() => setCartOpen(true)} aria-haspopup="dialog" className="flex items-center gap-2 rounded-xl bg-brand-800 px-4 py-3 text-sm font-bold text-white hover:bg-brand-900">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true" className="h-5 w-5"><path d="M3 3h2l3 12h11l2-8H6" /><circle cx="9" cy="20" r="1" /><circle cx="18" cy="20" r="1" /></svg>
+            Ver carrito ({cartCount})
+          </button>
+        </div>
+        <p role="status" className="sr-only">{announcement}</p>
         <label className="sr-only" htmlFor="buscar-producto">
           Buscar productos
         </label>
@@ -54,15 +73,15 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {filtrados.map((p) => (
-            <ProductCard key={p.id} producto={p} onClick={() => setSeleccionado(p)} />
+            <ProductCard key={p.id} producto={p} onClick={() => setSeleccionado(p)} onAddToCart={() => handleAdd(p)} inCart={cart.find((item) => item.product.id === p.id)?.quantity ?? 0} />
           ))}
         </div>
       )}
 
       {seleccionado && (
-        <ProductModal producto={seleccionado} onClose={() => setSeleccionado(null)} />
+        <ProductModal producto={seleccionado} onClose={() => setSeleccionado(null)} onAddToCart={() => { handleAdd(seleccionado); setSeleccionado(null); setCartOpen(true); }} inCart={cart.find((item) => item.product.id === seleccionado.id)?.quantity ?? 0} />
       )}
+      {cartOpen && <CartDrawer items={cart} onClose={() => setCartOpen(false)} onQuantityChange={(id, quantity) => setCart((items) => setCartQuantity(items, id, quantity))} />}
     </div>
   );
 }
-
