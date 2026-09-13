@@ -1,4 +1,4 @@
-const CACHE_NAME = "jb-catalogo-v1";
+const CACHE_NAME = "jb-catalogo-v2";
 const OFFLINE_URLS = ["/", "/manifest.json"];
 
 self.addEventListener("install", (event) => {
@@ -28,18 +28,14 @@ self.addEventListener("fetch", (event) => {
   if (request.url.includes("supabase.co")) return;
 
   event.respondWith(
-    caches.match(request).then((cached) => {
-      const fetchPromise = fetch(request)
-        .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            const clone = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return networkResponse;
-        })
-        .catch(() => cached);
-
-      return cached || fetchPromise;
-    })
+    fetch(request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+        }
+        return networkResponse;
+      })
+      .catch(() => caches.match(request))
   );
 });
