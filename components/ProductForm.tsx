@@ -16,6 +16,8 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
   const [nombre, setNombre] = useState(producto?.nombre ?? "");
   const [descripcion, setDescripcion] = useState(producto?.descripcion ?? "");
   const [precio, setPrecio] = useState(producto?.precio?.toString() ?? "");
+  const [precioOferta, setPrecioOferta] = useState(producto?.precio_oferta?.toString() ?? "");
+  const [tipo, setTipo] = useState(producto?.tipo ?? "normal");
   const [categoria, setCategoria] = useState<Categoria>(
     producto?.categoria ?? CATEGORIAS[0]
   );
@@ -92,6 +94,8 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
         nombre: nombre.trim(),
         descripcion: descripcion.trim() || null,
         precio: precio ? Number(precio) : null,
+        precio_oferta: tipo === "oferta" && precioOferta ? Number(precioOferta) : null,
+        tipo,
         categoria,
         disponible,
         destacado,
@@ -130,11 +134,21 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
         <label className="mb-1 block text-sm font-medium text-slate-700">Descripción</label>
         <textarea value={descripcion ?? ""} onChange={(e) => setDescripcion(e.target.value)} rows={4} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100" placeholder="Características, colores disponibles, garantía, etc." />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Precio (RD$)</label>
+          <label className="mb-1 block text-sm font-medium text-slate-700">Precio normal (RD$)</label>
           <input type="number" min={0} step="0.01" value={precio} onChange={(e) => setPrecio(e.target.value)} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100" placeholder="Dejar vacío = Consultar precio" />
         </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">Tipo de producto</label>
+          <select value={tipo} onChange={(e) => setTipo(e.target.value as "normal" | "oferta" | "combo")} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100">
+            <option value="normal">Normal</option><option value="oferta">Oferta</option><option value="combo">Combo</option>
+          </select>
+        </div>
+        {tipo === "oferta" && <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">Precio de oferta (RD$)</label>
+          <input type="number" min={0} step="0.01" value={precioOferta} onChange={(e) => setPrecioOferta(e.target.value)} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100" placeholder="Ej. 999" />
+        </div>}
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">Categoría</label>
           <select value={categoria} onChange={(e) => setCategoria(e.target.value as Categoria)} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100">
