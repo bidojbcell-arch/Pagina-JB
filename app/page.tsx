@@ -97,21 +97,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="categorias" className="mx-auto max-w-7xl px-5 py-16">
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Explora por categoría</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Lo que necesitas, en un solo lugar.</h2></div>
-          <a href="#productos" className="text-sm font-bold text-brand-700 hover:text-accent-600">Ver catálogo completo →</a>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map(([title, subtitle, number]) => (
-            <a key={title} href="#productos" className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-card">
-              <div className="flex items-start justify-between"><span className="text-xs font-black text-accent-600">{number}</span><span className="text-brand-300 transition group-hover:translate-x-1 group-hover:text-accent-600">→</span></div>
-              <h3 className="mt-8 text-xl font-extrabold text-brand-900">{title}</h3><p className="mt-1 text-sm text-slate-500">{subtitle}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section id="ofertas" className="border-y border-accent-100 bg-accent-50">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -155,6 +140,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section id="categorias" className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Explora por categoría</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Lo que necesitas, en un solo lugar.</h2></div>
+          <a href="#productos" className="text-sm font-bold text-brand-700 hover:text-accent-600">Ver catálogo completo →</a>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map(([title, subtitle, number]) => (
+            <a key={title} href="#productos" className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-card">
+              <div className="flex items-start justify-between"><span className="text-xs font-black text-accent-600">{number}</span><span className="text-brand-300 transition group-hover:translate-x-1 group-hover:text-accent-600">→</span></div>
+              <h3 className="mt-8 text-xl font-extrabold text-brand-900">{title}</h3><p className="mt-1 text-sm text-slate-500">{subtitle}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <footer className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center">
           <Image src="/jbcell-logo.svg" alt="JBCELL" width={150} height={45} className="h-10 w-auto" />
@@ -166,4 +166,3 @@ export default async function HomePage() {
     </main>
   );
 }
-
