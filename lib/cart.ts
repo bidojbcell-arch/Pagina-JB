@@ -18,6 +18,10 @@ export function canAddToCart(product: Producto) {
   return product.disponible && product.stock > 0 && price !== null && Number.isFinite(price) && price >= 0;
 }
 
+export function canOrderViaWhatsApp(product: Producto) {
+  return product.disponible && product.stock > 0;
+}
+
 export function addToCart(items: CartItem[], product: Producto): CartItem[] {
   if (!canAddToCart(product)) return items;
   const existing = items.find((item) => item.product.id === product.id);
