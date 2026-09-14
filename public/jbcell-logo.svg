@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 125" role="img" aria-labelledby="title"><title>JBCELL Tecnología a tu alcance</title><rect width="420" height="125" fill="white"/><path d="M44 84C27 52 52 20 100 16c28-2 52 8 65 28" fill="none" stroke="#e34343" stroke-width="8" stroke-linecap="round"/><path d="M51 30c-23 32-5 68 36 77 22 5 46-1 61-17" fill="none" stroke="#252b62" stroke-width="8" stroke-linecap="round"/><text x="73" y="79" fill="#252b62" font-family="Arial Black, Arial, sans-serif" font-size="58" font-weight="900" letter-spacing="-7">JB</text><text x="182" y="79" fill="#e34343" font-family="Arial Black, Arial, sans-serif" font-size="53" font-weight="900" letter-spacing="-5">CELL</text><text x="122" y="105" fill="#252b62" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="3">TECNOLOGÍA A TU ALCANCE</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" role="img" aria-labelledby="title desc">
+  <title id="title">JBCELL Tecnología a tu alcance</title>
+  <desc id="desc">Logo dinámico de JBCELL en azul marino y rojo, con señal de conexión.</desc>
+  <g id="connection-signal" fill="none" stroke="#e34343" stroke-linecap="round">
+    <path d="M54 38a58 58 0 0 1 75-3" stroke-width="9"/>
+    <path d="M43 61a74 74 0 0 1 99-4" stroke-width="7" opacity=".78"/>
+    <path d="M35 85a90 90 0 0 1 116-3" stroke-width="5" opacity=".52"/>
+  </g>
+  <g transform="translate(46 42)">
+    <path d="M0 0h18v47c0 11 5 16 15 16 12 0 18-8 18-22V20h18v22c0 22-13 38-36 38C12 80 0 68 0 48Z" fill="#252b62"/>
+    <path d="M79 0h38c20 0 31 8 31 22 0 9-5 15-13 18 11 3 17 10 17 20 0 15-12 24-33 24H79Zm34 27c10 0 15-4 15-11 0-6-5-9-15-9H98v20Zm3 30c11 0 17-4 17-11 0-7-6-11-17-11H98v22Z" fill="#252b62"/>
+  </g>
+  <g transform="translate(206 43) skewX(-8)">
+    <path d="M0 28C0 10 14 0 37 0c14 0 27 4 36 12l-11 14c-7-6-15-9-24-9-12 0-19 5-19 14s7 14 19 14c10 0 18-3 25-9l11 14c-10 9-23 13-38 13C14 63 0 50 0 28Z" fill="#e34343"/>
+    <path d="M84 1h55v15h-36v9h32v14h-32v10h37v15H84Z" fill="#e34343"/>
+    <path d="M151 1h19v46h34v16h-53Z" fill="#e34343"/>
+    <path d="M214 1h19v46h34v16h-53Z" fill="#e34343"/>
+  </g>
+  <path d="M46 126h397" stroke="#252b62" stroke-width="2" opacity=".18"/>
+  <text x="49" y="144" fill="#252b62" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="5">TECNOLOGÍA A TU ALCANCE</text>
+  <circle cx="453" cy="133" r="5" fill="#e34343"/>
+  <circle cx="470" cy="133" r="5" fill="#252b62"/>
+</svg>
