@@ -43,9 +43,6 @@ export default async function HomePage() {
             <a className="transition hover:text-brand-700" href="#productos">Productos</a>
             <a className="transition hover:text-brand-700" href="#ofertas">Ofertas</a>
           </nav>
-          <a href="/admin/login" className="shrink-0 rounded-full border border-brand-700 px-3 py-2 text-[11px] font-bold text-brand-700 transition hover:bg-brand-700 hover:text-white sm:px-4 sm:text-xs">
-            Iniciar sesión
-          </a>
         </div>
       </header>
 
@@ -159,10 +156,10 @@ export default async function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center">
           <Image src="/jbcell-logo.svg" alt="JBCELL" width={150} height={45} className="h-10 w-auto" />
           <p>© {new Date().getFullYear()} JBCELL · Tecnología a tu alcance.</p>
-          <a href="/admin/login" className="font-bold text-brand-700 hover:text-accent-600">Acceso administrador</a>
         </div>
       </footer>
       <WhatsAppFloat />
     </main>
   );
 }
+
