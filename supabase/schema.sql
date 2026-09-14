@@ -13,6 +13,7 @@ create table if not exists public.productos (
   imagenes text[] not null default '{}',
   disponible boolean not null default true,
   destacado boolean not null default false,
+  orden integer not null default 0,
   created_at timestamptz not null default now()
 );
 
@@ -103,3 +104,4 @@ create policy "Eliminar imagenes - admin"
 -- Supabase > Authentication > Users > Add user (email + contraseña)
 -- Ese correo y contraseña serán los que uses para entrar a /admin/login
 -- =========================================================
+
