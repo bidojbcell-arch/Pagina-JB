@@ -23,7 +23,7 @@ export default async function HomePage() {
     .from("productos")
     .select("*")
     .eq("disponible", true)
-    .order("destacado", { ascending: false })
+    .order("orden", {ascending: true})
     .order("created_at", { ascending: false });
 
   const productos = (data ?? []) as Producto[];
