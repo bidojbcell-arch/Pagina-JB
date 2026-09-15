@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import MetaPixel from "@/components/MetaPixel";
 import PwaRegister from "@/components/PwaRegister";
 
 export const metadata: Metadata = {
@@ -36,8 +37,10 @@ export default function RootLayout({
     <html lang="es">
       <body className="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
         <PwaRegister />
+        <MetaPixel />
         {children}
       </body>
     </html>
   );
 }
+
