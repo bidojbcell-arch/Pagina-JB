@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "3F8feaj8TWiQDWPaFr-WfK-QrkwZjG2VIPLvTVcBiL8",
+  },
   openGraph: {
     title: "JBCELL | Celulares y accesorios en Santo Domingo",
     description:
