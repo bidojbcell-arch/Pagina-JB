@@ -17,6 +17,24 @@ const categories = [
   ["Ofertas", "Equipos destacados", "06"],
 ];
 
+const storeSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "JBCELL",
+  url: "https://paginajb.vercel.app/",
+  description:
+    "Tienda de celulares, accesorios y tecnología con entrega en Santo Domingo y envíos a toda República Dominicana.",
+  areaServed: [
+    { "@type": "City", name: "Santo Domingo" },
+    { "@type": "Country", name: "República Dominicana" },
+  ],
+  potentialAction: {
+    "@type": "ContactAction",
+    target: whatsappLink("Hola, quiero información sobre los productos de JBCELL."),
+    name: "Comprar por WhatsApp",
+  },
+};
+
 export default async function HomePage() {
   const supabase = createClient();
   const { data } = await supabase
@@ -30,8 +48,14 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(storeSchema).replace(/</g, "\u003c"),
+        }}
+      />
       <div className="bg-brand-900 px-4 py-2 text-center text-[11px] font-bold uppercase tracking-[0.16em] text-white">
-        Envíos rápidos · Atención personalizada · Equipos con garantía
+        Entrega en Santo Domingo · Envíos a toda República Dominicana · Atención personalizada
       </div>
 
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
@@ -53,10 +77,10 @@ export default async function HomePage() {
               JBCELL · Conecta tu mundo
             </p>
             <h1 className="max-w-3xl text-4xl font-black leading-[0.98] tracking-tight text-brand-900 sm:text-6xl">
-              Tecnología que te <span className="text-accent-600">acompaña.</span>
+              Celulares y accesorios que te <span className="text-accent-600">acompañan.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              Celulares, accesorios y equipos para conectar tu mundo. Compra con atención cercana, productos seleccionados y precios claros.
+              Tu tienda de celulares y accesorios en Santo Domingo. Compra por WhatsApp con entrega local y envíos a toda República Dominicana.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#productos" className="rounded-xl bg-accent-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-accent-600/20 transition hover:-translate-y-0.5 hover:bg-accent-700">
@@ -143,4 +167,3 @@ export default async function HomePage() {
     </main>
   );
 }
-
