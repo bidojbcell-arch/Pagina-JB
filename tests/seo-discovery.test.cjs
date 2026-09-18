@@ -24,6 +24,7 @@ test("storefront metadata describes JBCELL's local shopping and delivery coverag
   assert.match(layout, /República Dominicana/);
   assert.match(page, /Envíos a toda República Dominicana/);
   assert.match(page, /Entrega en Santo Domingo/);
+  assert.match(layout, /verification:\s*\{\s*google:/);
 });
 
 test("homepage publishes store structured data with Santo Domingo and nationwide coverage", () => {
