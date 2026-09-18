@@ -47,7 +47,7 @@ export default async function HomePage() {
       </header>
 
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-brand-50">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:py-24">
           <div className="relative z-10">
             <p className="mb-4 inline-flex rounded-full bg-brand-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-800">
               JBCELL · Conecta tu mundo
@@ -70,25 +70,6 @@ export default async function HomePage() {
               <p><strong className="block text-xl text-brand-800">100%</strong><span className="text-slate-500">Atención cercana</span></p>
               <p><strong className="block text-xl text-brand-800">✓</strong><span className="text-slate-500">Calidad garantizada</span></p>
               <p><strong className="block text-xl text-brand-800">↗</strong><span className="text-slate-500">Entrega rápida</span></p>
-            </div>
-          </div>
-          <div className="relative mx-auto w-full max-w-lg">
-            <div className="absolute inset-0 -rotate-6 rounded-[2rem] bg-accent-100" />
-            <div className="relative overflow-hidden rounded-[2rem] bg-brand-900 p-7 shadow-2xl shadow-brand-900/20 sm:p-10">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-200">JBCELL · Selección destacada</p>
-              <div className="mt-8 rounded-3xl bg-gradient-to-br from-brand-500 to-brand-800 p-6 sm:p-8">
-                <div className="mx-auto flex h-52 w-32 rotate-[12deg] flex-col rounded-[1.7rem] border-8 border-slate-900 bg-slate-100 p-2 shadow-2xl">
-                  <div className="mx-auto h-4 w-14 rounded-full bg-slate-900" />
-                  <div className="mt-3 flex flex-1 flex-col justify-end rounded-[1.05rem] bg-gradient-to-br from-accent-300 via-white to-accent-500 p-3">
-                    <span className="text-xs font-black text-brand-900">JBCELL</span>
-                    <span className="text-[9px] font-semibold text-brand-700">Siempre conectado</span>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 flex items-end justify-between">
-                <div><p className="text-sm font-bold text-white">Encuentra tu próximo equipo</p><p className="mt-1 text-xs text-brand-200">Nuevos ingresos cada semana</p></div>
-                <span className="rounded-full bg-white px-3 py-2 text-xs font-black text-accent-700">OFERTAS</span>
-              </div>
             </div>
           </div>
         </div>
