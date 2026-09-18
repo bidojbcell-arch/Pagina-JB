@@ -4,14 +4,27 @@ import MetaPixel from "@/components/MetaPixel";
 import PwaRegister from "@/components/PwaRegister";
 
 export const metadata: Metadata = {
-  title: "JB Catálogo | Tecnología y Accesorios",
+  metadataBase: new URL("https://paginajb.vercel.app"),
+  title: "Tienda de celulares y accesorios en Santo Domingo | JBCELL",
   description:
-    "Catálogo de relojes, audífonos, celulares, cargadores, powerbanks, soportes, tablets y palos selfie. Ordena directo por WhatsApp.",
+    "Compra celulares, accesorios, audífonos, cargadores, relojes inteligentes y más en JBCELL. Entrega en Santo Domingo y envíos a toda República Dominicana por WhatsApp.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "JBCELL | Celulares y accesorios en Santo Domingo",
+    description:
+      "Tecnología, celulares y accesorios con entrega en Santo Domingo y envíos a toda República Dominicana.",
+    url: "/",
+    siteName: "JBCELL",
+    locale: "es_DO",
+    type: "website",
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "JB Catálogo",
+    title: "JBCELL",
   },
   icons: {
     icon: [
@@ -43,4 +56,3 @@ export default function RootLayout({
     </html>
   );
 }
-
