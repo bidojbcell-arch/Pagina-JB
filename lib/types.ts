@@ -1,2 +1,4 @@
 export type Categoria="Relojes"|"Audífonos"|"Celulares"|"Cargadores"|"Powerbanks"|"Soportes"|"Tablets"|"Palos Selfie"|"Otros"; export const CATEGORIAS:Categoria[]=["Relojes","Audífonos","Celulares","Cargadores","Powerbanks","Soportes","Tablets","Palos Selfie","Otros"]; export type TipoProducto="normal"|"oferta"|"combo"; export interface Producto{id:string;nombre:string;descripcion:string|null;precio:number|null;precio_oferta:number|null;tipo:TipoProducto;categoria:Categoria;imagenes:string[];disponible:boolean;destacado:boolean;visible_mayoreo:boolean;precio_mayoreo:number|null;minimo_mayoreo:number;stock:number;orden:number;created_at:string;} export type ProductoInput=Omit<Producto,"id"|"created_at"|"orden">;
+export type EstadoResena="pendiente"|"aprobada";
+export interface Resena{id:string;nombre:string;calificacion:number;comentario:string;estado:EstadoResena;created_at:string;}
 
