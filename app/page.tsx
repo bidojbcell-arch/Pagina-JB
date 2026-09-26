@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import { Producto } from "@/lib/types";
+import { Producto, Resena } from "@/lib/types";
 import CatalogoClient from "@/components/CatalogoClient";
+import ResenasPublicas from "@/components/ResenasPublicas";
 import StorefrontTrust from "@/components/StorefrontTrust";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { whatsappLink } from "@/lib/whatsapp";
@@ -36,6 +37,13 @@ export default async function HomePage() {
     .order("created_at", { ascending: false });
 
   const productos = (data ?? []) as Producto[];
+  const { data: resenasData } = await supabase
+    .from("resenas")
+    .select("*")
+    .eq("estado", "aprobada")
+    .order("created_at", { ascending: false })
+    .limit(6);
+  const resenas = (resenasData ?? []) as Resena[];
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
@@ -106,27 +114,7 @@ export default async function HomePage() {
 
       <StorefrontTrust />
 
-      <section aria-labelledby="testimonios-title" className="bg-brand-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Historias reales</p>
-            <h2 id="testimonios-title" className="mt-2 text-3xl font-black tracking-tight text-brand-900">Cerca de ti en cada compra.</h2>
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              ["LM", "Laura M.", "Me ayudaron a elegir un equipo que se ajusta a lo que necesito. La atención fue clara y rápida."],
-              ["CR", "Carlos R.", "Encontré el accesorio que buscaba y coordinaron todo de forma muy sencilla por WhatsApp."],
-              ["AP", "Andrea P.", "Mi compra llegó bien presentada y tuve acompañamiento para resolver mis dudas antes de decidir."],
-            ].map(([initials, name, quote]) => (
-              <figure key={name} className="rounded-2xl border border-brand-100 bg-white p-6 shadow-card">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-xs font-black text-white">{initials}</div>
-                <blockquote className="mt-5 text-sm leading-6 text-slate-600">“{quote}”</blockquote>
-                <figcaption className="mt-5 text-sm font-bold text-brand-800">{name}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ResenasPublicas resenas={resenas} />
 
       <footer className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center">
