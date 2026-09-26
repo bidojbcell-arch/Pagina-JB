@@ -13,6 +13,7 @@ import { CartItem, addToCart, setCartQuantity } from "@/lib/cart";
 export default function CatalogoClient({ productos }: { productos: Producto[] }) {
   const [categoria, setCategoria] = useState("Todos");
   const [busqueda, setBusqueda] = useState("");
+  const [pagina, setPagina] = useState(1);
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -35,6 +36,10 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
       return coincideCategoria && coincideBusqueda;
     });
   }, [productos, categoria, busqueda]);
+  const porPagina = 12;
+  const totalPaginas = Math.ceil(filtrados.length / porPagina);
+  const visibles = filtrados.slice((pagina - 1) * porPagina, pagina * porPagina);
+  const cambiarCategoria = (valor: string) => { setCategoria(valor); setPagina(1); };
 
   return (
     <div>
@@ -51,13 +56,13 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
           type="search"
           placeholder="Buscar producto..."
           value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
+          onChange={(e) => { setBusqueda(e.target.value); setPagina(1); }}
           className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
         />
         <CategoryFilter
           categorias={[...CATEGORIAS, "Ofertas"]}
           activa={categoria}
-          onChange={setCategoria}
+          onChange={cambiarCategoria}
         />
       </div>
 
@@ -70,7 +75,7 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {filtrados.map((p) => (
+          {visibles.map((p) => (
             <ProductCard key={p.id} producto={p} onClick={() => setSeleccionado(p)} onAddToCart={() => handleAdd(p)} inCart={cart.find((item) => item.product.id === p.id)?.quantity ?? 0} />
           ))}
         </div>
@@ -79,6 +84,7 @@ export default function CatalogoClient({ productos }: { productos: Producto[] })
       {seleccionado && (
         <ProductModal producto={seleccionado} onClose={() => setSeleccionado(null)} onAddToCart={() => { handleAdd(seleccionado); setSeleccionado(null); setCartOpen(true); }} inCart={cart.find((item) => item.product.id === seleccionado.id)?.quantity ?? 0} />
       )}
+      {totalPaginas > 1 && <nav aria-label="Paginación de productos" className="mt-8 flex flex-wrap justify-center gap-2">{Array.from({ length: totalPaginas }, (_, index) => index + 1).map((numero) => <button key={numero} type="button" onClick={() => setPagina(numero)} aria-current={pagina === numero ? "page" : undefined} className={pagina === numero ? "h-10 min-w-10 rounded-lg bg-brand-700 px-3 font-bold text-white" : "h-10 min-w-10 rounded-lg border border-slate-200 bg-white px-3 font-bold text-brand-700 hover:border-brand-400"}>{numero}</button>)}</nav>}
       {cartOpen && <CartDrawer items={cart} onClose={() => setCartOpen(false)} onQuantityChange={(id, quantity) => setCart((items) => setCartQuantity(items, id, quantity))} />}
       <CartFloat count={cartCount} onOpen={() => setCartOpen(true)} />
     </div>
