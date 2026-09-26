@@ -8,15 +8,6 @@ import { whatsappLink } from "@/lib/whatsapp";
 
 export const revalidate = 0;
 
-const categories = [
-  ["Celulares", "iPhone, Samsung y más", "01"],
-  ["Accesorios", "Cargadores, forros y cables", "02"],
-  ["Audio", "Audífonos y parlantes", "03"],
-  ["Smartwatch", "Conecta tu día", "04"],
-  ["Tablets", "Trabajo y entretenimiento", "05"],
-  ["Ofertas", "Equipos destacados", "06"],
-];
-
 const storeSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -61,7 +52,7 @@ export default async function HomePage() {
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 px-3 py-3 sm:flex-nowrap sm:gap-4 sm:px-5 sm:py-4">
           <a href="/" className="shrink-0" aria-label="Inicio JBCELL">
-            <Image src="/jbcell-logo.svg" alt="JBCELL" width={205} height={61} priority className="h-8 w-auto sm:h-14" />
+            <Image src="/jbcell-logo-clean.png" alt="JBCELL" width={2073} height={758} priority className="h-8 w-auto sm:h-14" />
           </a>
           <nav aria-label="Navegación principal" className="order-3 mt-3 flex basis-full justify-center gap-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-600 sm:order-none sm:mt-0 sm:basis-auto sm:flex-1 sm:justify-center sm:border-0 sm:pt-0 sm:text-sm">
             <a className="transition hover:text-brand-700" href="#productos">Productos</a>
@@ -89,11 +80,6 @@ export default async function HomePage() {
               <a href={whatsappLink("Hola, quiero información sobre los productos de JBCELL.")} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-brand-200 bg-white px-6 py-3.5 text-sm font-bold text-brand-800 transition hover:border-brand-700">
                 Escríbenos por WhatsApp
               </a>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-4 border-t border-slate-200 pt-6 text-sm">
-              <p><strong className="block text-xl text-brand-800">100%</strong><span className="text-slate-500">Atención cercana</span></p>
-              <p><strong className="block text-xl text-brand-800">✓</strong><span className="text-slate-500">Calidad garantizada</span></p>
-              <p><strong className="block text-xl text-brand-800">↗</strong><span className="text-slate-500">Entrega rápida</span></p>
             </div>
           </div>
         </div>
@@ -142,25 +128,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="categorias" className="mx-auto max-w-7xl px-5 py-16">
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Explora por categoría</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Lo que necesitas, en un solo lugar.</h2></div>
-          <a href="#productos" className="text-sm font-bold text-brand-700 hover:text-accent-600">Ver catálogo completo →</a>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map(([title, subtitle, number]) => (
-            <a key={title} href="#productos" className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-card">
-              <div className="flex items-start justify-between"><span className="text-xs font-black text-accent-600">{number}</span><span className="text-brand-300 transition group-hover:translate-x-1 group-hover:text-accent-600">→</span></div>
-              <h3 className="mt-8 text-xl font-extrabold text-brand-900">{title}</h3><p className="mt-1 text-sm text-slate-500">{subtitle}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <footer className="bg-white">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center">
-          <Image src="/jbcell-logo.svg" alt="JBCELL" width={150} height={45} className="h-10 w-auto" />
-          <p>© {new Date().getFullYear()} JBCELL · Tecnología a tu alcance.</p>
+          <div>
+            <Image src="/jbcell-logo-clean.png" alt="JBCELL" width={2073} height={758} className="h-10 w-auto" />
+            <p className="mt-2">© {new Date().getFullYear()} JBCELL · Tecnología a tu alcance.</p>
+          </div>
+          <nav aria-label="Redes sociales y ubicación" className="flex flex-wrap gap-x-5 gap-y-3 font-semibold text-brand-700">
+            <a href="https://www.instagram.com/bidosmart1/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61591822580824" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Facebook</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=JBCELL%2C%20Plaza%20Fermin%2C%20Santo%20Domingo%20Oeste" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Cómo llegar · Plaza Fermín</a>
+          </nav>
         </div>
       </footer>
       <WhatsAppFloat />
