@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase/server";
 import { Producto, Resena } from "@/lib/types";
 import CatalogoClient from "@/components/CatalogoClient";
 import ResenasPublicas from "@/components/ResenasPublicas";
-import StorefrontTrust from "@/components/StorefrontTrust";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { whatsappLink } from "@/lib/whatsapp";
 
@@ -78,20 +77,6 @@ export default async function HomePage() {
           <CatalogoClient productos={productos} />
         </div>
       </section>
-
-      <section id="ofertas" className="border-y border-accent-100 bg-accent-50">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-700">Ofertas JBCELL</p>
-            <h2 className="mt-1 text-2xl font-black tracking-tight text-brand-900">Equipos destacados para ti</h2>
-          </div>
-          <a href="#productos" className="w-fit rounded-xl bg-accent-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-accent-700">
-            Ver productos disponibles
-          </a>
-        </div>
-      </section>
-
-      <StorefrontTrust />
 
       <ResenasPublicas resenas={resenas} />
 
