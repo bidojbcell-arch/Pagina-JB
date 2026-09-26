@@ -65,6 +65,9 @@ export default async function HomePage() {
           <nav aria-label="Navegación principal" className="order-3 mt-3 flex basis-full justify-center gap-6 border-t border-slate-100 pt-3 text-xs font-bold text-slate-600 sm:order-none sm:mt-0 sm:basis-auto sm:flex-1 sm:justify-center sm:border-0 sm:pt-0 sm:text-sm">
             <a className="transition hover:text-brand-700" href="#productos">Productos</a>
             <a className="transition hover:text-brand-700" href="#ofertas">Ofertas</a>
+            <a aria-label="Instagram JBCELL" href="https://www.instagram.com/bidosmart1/" target="_blank" rel="noopener noreferrer" className="transition hover:text-accent-600"><svg viewBox="0 0 24 24" aria-hidden="true" className="inline h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a aria-label="Facebook JBCELL" href="https://www.facebook.com/profile.php?id=61591822580824" target="_blank" rel="noopener noreferrer" className="transition hover:text-accent-600"><svg viewBox="0 0 24 24" aria-hidden="true" className="inline h-4 w-4" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.5-1.5H16.7V4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4V10H8v3h2.5v8h3z"/></svg></a>
+            <a aria-label="Ubicación JBCELL" href="https://www.google.com/maps/place/JBCELL/@18.4784719,-69.9721019,16z/data=!4m6!3m5!1s0x8eaf8b5410336c79:0xb03ff606be46cd48!8m2!3d18.4784716!4d-69.969499!16s%2Fg%2F11wpp554tk?entry=ttu" target="_blank" rel="noopener noreferrer" className="transition hover:text-accent-600"><svg viewBox="0 0 24 24" aria-hidden="true" className="inline h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 21s7-5.1 7-12a7 7 0 1 0-14 0c0 6.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></a>
           </nav>
         </div>
       </header>
@@ -117,6 +120,7 @@ export default async function HomePage() {
       <ResenasPublicas resenas={resenas} />
 
       <footer className="bg-white">
+        <section aria-label="Ubicación JBCELL" className="mx-auto max-w-7xl px-5 pt-10"><div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50"><iframe title="Mapa de JBCELL" src="https://www.google.com/maps?q=JBCELL%2C%20Plaza%20Fermin%2C%20Santo%20Domingo%20Oeste&output=embed" className="h-64 w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="p-4"><p className="font-bold text-brand-900">Plaza Fermín, Santo Domingo Oeste KM9 de la Autop. Juan Pablo Duarte, Santo Domingo 10110</p><a href="https://www.google.com/maps/place/JBCELL/@18.4784719,-69.9721019,16z/data=!4m6!3m5!1s0x8eaf8b5410336c79:0xb03ff606be46cd48!8m2!3d18.4784716!4d-69.969499!16s%2Fg%2F11wpp554tk?entry=ttu" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm font-bold text-brand-700 hover:text-accent-600">Abrir en Google Maps</a></div></div></section>
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center">
           <div>
             <Image src="/jbcell-logo-clean.png" alt="JBCELL" width={2073} height={758} className="h-10 w-auto" />
