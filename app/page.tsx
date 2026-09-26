@@ -74,32 +74,8 @@ export default async function HomePage() {
 
       <section id="productos" className="border-b border-brand-100 bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <div className="mb-8"><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Catálogo JBCELL</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Novedades y productos disponibles</h2><p className="mt-2 text-slate-500">Elige tu favorito y escríbenos para confirmar disponibilidad.</p></div>
+          <div className="mb-8"><div className="mb-6 flex flex-wrap gap-3"><a href="#productos" className="rounded-xl bg-accent-600 px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-accent-600/30 transition hover:-translate-y-0.5 hover:bg-accent-700">Ver productos</a><a href={whatsappLink("Hola, quiero información sobre los productos de JBCELL.")} target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-green-600/25 transition hover:-translate-y-0.5 hover:brightness-95">Escríbenos por WhatsApp</a></div><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Catálogo JBCELL</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Novedades y productos disponibles</h2><p className="mt-2 text-slate-500">Elige tu favorito y escríbenos para confirmar disponibilidad.</p></div>
           <CatalogoClient productos={productos} />
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-brand-50">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:py-24">
-          <div className="relative z-10">
-            <p className="mb-4 inline-flex rounded-full bg-brand-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-800">
-              JBCELL · Conecta tu mundo
-            </p>
-            <h1 className="max-w-3xl text-4xl font-black leading-[0.98] tracking-tight text-brand-900 sm:text-6xl">
-              Celulares y accesorios que te <span className="text-accent-600">acompañan.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              Tu tienda de celulares y accesorios en Santo Domingo. Compra por WhatsApp con entrega local y envíos a toda República Dominicana.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#productos" className="rounded-xl bg-accent-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-accent-600/20 transition hover:-translate-y-0.5 hover:bg-accent-700">
-                Ver productos
-              </a>
-              <a href={whatsappLink("Hola, quiero información sobre los productos de JBCELL.")} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-brand-200 bg-white px-6 py-3.5 text-sm font-bold text-brand-800 transition hover:border-brand-700">
-                Escríbenos por WhatsApp
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 
