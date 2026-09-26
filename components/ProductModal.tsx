@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Producto } from "@/lib/types";
 import { whatsappLinkProducto } from "@/lib/whatsapp";
 import { canAddToCart, canOrderViaWhatsApp } from "@/lib/cart";
+import { nextImageIndex, previousImageIndex } from "@/lib/gallery";
 
 export default function ProductModal({
   producto,
@@ -54,12 +55,34 @@ export default function ProductModal({
                 Sin imagen
               </div>
             )}
+            {imagenes.length > 1 && (
+              <div className="pointer-events-none absolute inset-x-3 top-1/2 flex -translate-y-1/2 justify-between">
+                <button
+                  type="button"
+                  aria-label="Foto anterior"
+                  onClick={() => setActiva((current) => previousImageIndex(current, imagenes.length))}
+                  className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-xl font-bold text-brand-900 shadow transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  aria-label="Foto siguiente"
+                  onClick={() => setActiva((current) => nextImageIndex(current, imagenes.length))}
+                  className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-xl font-bold text-brand-900 shadow transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+                >
+                  ›
+                </button>
+              </div>
+            )}
           </div>
           {imagenes.length > 1 && (
             <div className="flex gap-2 overflow-x-auto p-3">
               {imagenes.map((img, i) => (
                 <button
                   key={img + i}
+                  type="button"
+                  aria-label={`Ver foto ${i + 1}`}
                   onClick={() => setActiva(i)}
                   className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 ${
                     i === activa ? "border-brand-600" : "border-transparent"

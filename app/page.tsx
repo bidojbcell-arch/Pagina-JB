@@ -69,6 +69,13 @@ export default async function HomePage() {
         </div>
       </header>
 
+      <section id="productos" className="border-b border-brand-100 bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-16">
+          <div className="mb-8"><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Catálogo JBCELL</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Novedades y productos disponibles</h2><p className="mt-2 text-slate-500">Elige tu favorito y escríbenos para confirmar disponibilidad.</p></div>
+          <CatalogoClient productos={productos} />
+        </div>
+      </section>
+
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-brand-50">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:py-24">
           <div className="relative z-10">
@@ -105,13 +112,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="productos" className="border-b border-brand-100 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-16">
-          <div className="mb-8"><p className="text-xs font-bold uppercase tracking-[0.16em] text-accent-600">Catálogo JBCELL</p><h2 className="mt-2 text-3xl font-black tracking-tight text-brand-900">Novedades y productos disponibles</h2><p className="mt-2 text-slate-500">Elige tu favorito y escríbenos para confirmar disponibilidad.</p></div>
-          <CatalogoClient productos={productos} />
-        </div>
-      </section>
-
       <StorefrontTrust />
 
       <ResenasPublicas resenas={resenas} />
@@ -121,11 +121,21 @@ export default async function HomePage() {
           <div>
             <Image src="/jbcell-logo-clean.png" alt="JBCELL" width={2073} height={758} className="h-10 w-auto" />
             <p className="mt-2">© {new Date().getFullYear()} JBCELL · Tecnología a tu alcance.</p>
+            <p className="mt-2 max-w-md">Plaza Fermín, Santo Domingo Oeste KM9 de la Autop. Juan Pablo Duarte, Santo Domingo 10110</p>
           </div>
           <nav aria-label="Redes sociales y ubicación" className="flex flex-wrap gap-x-5 gap-y-3 font-semibold text-brand-700">
-            <a href="https://www.instagram.com/bidosmart1/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61591822580824" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Facebook</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=JBCELL%2C%20Plaza%20Fermin%2C%20Santo%20Domingo%20Oeste" target="_blank" rel="noopener noreferrer" className="hover:text-accent-600">Cómo llegar · Plaza Fermín</a>
+            <a href="https://www.instagram.com/bidosmart1/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="inline-flex items-center gap-2 hover:text-accent-600">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61591822580824" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="inline-flex items-center gap-2 hover:text-accent-600">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.5 1.6-1.5h1.7V3.3a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3V13h2.8v8h3.4Z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.google.com/maps/place/JBCELL/@18.4784719,-69.9721019,16z/data=!4m6!3m5!1s0x8eaf8b5410336c79:0xb03ff606be46cd48!8m2!3d18.4784716!4d-69.969499!16s%2Fg%2F11wpp554tk?entry=ttu" target="_blank" rel="noopener noreferrer" aria-label="Cómo llegar" className="inline-flex items-center gap-2 hover:text-accent-600">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Cómo llegar
+            </a>
           </nav>
         </div>
       </footer>
