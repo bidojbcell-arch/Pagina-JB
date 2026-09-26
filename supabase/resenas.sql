@@ -17,7 +17,7 @@ create table if not exists public.resenas (
 alter table public.resenas enable row level security;
 
 grant select, insert on public.resenas to anon;
-grant select, update, delete on public.resenas to authenticated;
+grant select, insert, update, delete on public.resenas to authenticated;
 
 create policy "Visitors can read approved reviews"
   on public.resenas for select
@@ -27,6 +27,11 @@ create policy "Visitors can read approved reviews"
 create policy "Visitors can submit pending reviews"
   on public.resenas for insert
   to anon
+  with check (estado = 'pendiente');
+
+create policy "Authenticated visitors can submit pending reviews"
+  on public.resenas for insert
+  to authenticated
   with check (estado = 'pendiente');
 
 create policy "Authenticated users can read all reviews"

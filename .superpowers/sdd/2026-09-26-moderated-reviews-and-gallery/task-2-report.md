@@ -10,3 +10,7 @@ Implemented public reviews on the homepage. The server loads the six newest appr
 - Full suite: 26 passed, 1 failed. The failing `the category links are below the testimonials section` test expects `id="categorias"` in `app/page.tsx`; that ID was already absent at HEAD before Task 2.
 
 No live Supabase project was available for an end-to-end insert check.
+
+## Review follow-up
+
+Signed-in visitors use an authenticated Supabase session, so the original anonymous-only INSERT grant and policy could reject their submissions. Added authenticated INSERT privilege and a matching RLS policy restricted to `estado = 'pendiente'`. The new regression test failed before the SQL change and passed afterward. Task 1 and Task 2 focused suites now pass together (5 tests).

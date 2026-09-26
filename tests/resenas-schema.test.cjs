@@ -28,3 +28,12 @@ test("review schema defines constraints and moderated row-level access", () => {
   assert.match(types, /export type EstadoResena\s*=\s*"pendiente"\s*\|\s*"aprobada"/);
   assert.match(types, /export interface Resena\s*\{/);
 });
+
+test("signed-in visitors can insert only pending reviews", () => {
+  const schema = fs.readFileSync(schemaPath, "utf8");
+  const authenticatedGrants = [...schema.matchAll(/grant\s+([^;]+?)\s+on\s+public\.resenas\s+to\s+authenticated\s*;/gi)]
+    .flatMap((match) => match[1].split(",").map((privilege) => privilege.trim().toLowerCase()));
+
+  assert.ok(authenticatedGrants.includes("insert"), "authenticated role needs INSERT privilege");
+  assert.match(schema, /create policy [^;]*?on public\.resenas\s+for insert\s+to authenticated\s+with check\s*\(estado\s*=\s*'pendiente'\)/is);
+});
