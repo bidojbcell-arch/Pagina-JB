@@ -13,6 +13,9 @@ create table if not exists public.productos (
   imagenes text[] not null default '{}',
   disponible boolean not null default true,
   destacado boolean not null default false,
+  visible_mayoreo boolean not null default false,
+  precio_mayoreo numeric,
+  minimo_mayoreo integer not null default 1 check (minimo_mayoreo >= 1),
   orden integer not null default 0,
   created_at timestamptz not null default now()
 );

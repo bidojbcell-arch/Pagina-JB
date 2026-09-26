@@ -23,6 +23,9 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
   );
   const [disponible, setDisponible] = useState(producto?.disponible ?? true);
   const [destacado, setDestacado] = useState(producto?.destacado ?? false);
+  const [visibleMayoreo, setVisibleMayoreo] = useState(producto?.visible_mayoreo ?? false);
+  const [precioMayoreo, setPrecioMayoreo] = useState(producto?.precio_mayoreo?.toString() ?? "");
+  const [minimoMayoreo, setMinimoMayoreo] = useState(producto?.minimo_mayoreo?.toString() ?? "1");
   const [imagenesExistentes, setImagenesExistentes] = useState<string[]>(
     producto?.imagenes ?? []
   );
@@ -84,6 +87,10 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
       setError("Agrega al menos una foto del producto.");
       return;
     }
+    if (visibleMayoreo && (!precioMayoreo || Number(precioMayoreo) < 0 || Number(minimoMayoreo) < 1)) {
+      setError("Para publicar al por mayor, agrega un precio y un mínimo de 1 unidad.");
+      return;
+    }
 
     setGuardando(true);
     try {
@@ -99,6 +106,9 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
         categoria,
         disponible,
         destacado,
+        visible_mayoreo: visibleMayoreo,
+        precio_mayoreo: visibleMayoreo && precioMayoreo ? Number(precioMayoreo) : null,
+        minimo_mayoreo: visibleMayoreo ? Math.max(1, Number(minimoMayoreo) || 1) : 1,
         imagenes: imagenesFinal,
       };
 
@@ -160,6 +170,14 @@ export default function ProductForm({ producto }: { producto?: Producto }) {
         <label className="flex items-center gap-2 text-sm text-slate-700"><input type="checkbox" checked={disponible} onChange={(e) => setDisponible(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-brand-600" />Visible en el catálogo</label>
         <label className="flex items-center gap-2 text-sm text-slate-700"><input type="checkbox" checked={destacado} onChange={(e) => setDestacado(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-brand-600" />Marcar como destacado</label>
       </div>
+      <fieldset className="rounded-2xl border border-brand-100 bg-brand-50 p-4">
+        <legend className="px-1 text-sm font-bold text-brand-900">Catálogo al por mayor</legend>
+        <label className="flex items-center gap-2 text-sm font-semibold text-brand-800"><input type="checkbox" checked={visibleMayoreo} onChange={(e) => setVisibleMayoreo(e.target.checked)} className="h-4 w-4 rounded border-slate-300 text-brand-600" />Mostrar este producto en /alpormayor</label>
+        {visibleMayoreo && <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div><label className="mb-1 block text-sm font-medium text-slate-700">Precio por mayor (RD$) *</label><input type="number" required min={0} step="0.01" value={precioMayoreo} onChange={(e) => setPrecioMayoreo(e.target.value)} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100" placeholder="Ej. 850" /></div>
+          <div><label className="mb-1 block text-sm font-medium text-slate-700">Cantidad mínima *</label><input type="number" required min={1} step="1" value={minimoMayoreo} onChange={(e) => setMinimoMayoreo(e.target.value)} className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100" placeholder="Ej. 3" /></div>
+        </div>}
+      </fieldset>
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Fotos del producto *</label>
         <div className="flex flex-wrap gap-3">
