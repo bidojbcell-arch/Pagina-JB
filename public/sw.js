@@ -1,5 +1,5 @@
-const CACHE_NAME = "jb-catalogo-v2";
-const OFFLINE_URLS = ["/", "/manifest.json"];
+const CACHE_NAME = "jb-catalogo-v3";
+const OFFLINE_URLS = ["/", "/admin/login", "/manifest.json"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
