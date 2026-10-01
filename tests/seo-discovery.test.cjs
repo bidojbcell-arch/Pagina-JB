@@ -9,11 +9,11 @@ test("search engines receive a crawlable sitemap and robots policy for the produ
   const sitemap = fs.readFileSync(path.join(root, "app", "sitemap.ts"), "utf8");
   const robots = fs.readFileSync(path.join(root, "app", "robots.ts"), "utf8");
 
-  assert.match(sitemap, /https:\/\/paginajb\.vercel\.app/);
+  assert.match(sitemap, /https:\/\/www\.jbcell\.com/);
   assert.match(sitemap, /changeFrequency:\s*["']daily["']/);
   assert.match(robots, /userAgent:\s*["']\*["']/);
   assert.match(robots, /allow:\s*["']\/["']/);
-  assert.match(robots, /sitemap:\s*["']https:\/\/paginajb\.vercel\.app\/sitemap\.xml["']/);
+  assert.match(robots, /sitemap:\s*["']https:\/\/www\.jbcell\.com\/sitemap\.xml["']/);
 });
 
 test("storefront metadata describes JBCELL's local shopping and delivery coverage", () => {
@@ -25,6 +25,7 @@ test("storefront metadata describes JBCELL's local shopping and delivery coverag
   assert.match(page, /Envíos a toda República Dominicana/);
   assert.match(page, /Entrega en Santo Domingo/);
   assert.match(layout, /verification:\s*\{\s*google:/);
+  assert.match(layout, /metadataBase:\s*new URL\("https:\/\/www\.jbcell\.com"\)/);
 });
 
 test("homepage publishes store structured data with Santo Domingo and nationwide coverage", () => {
@@ -35,4 +36,5 @@ test("homepage publishes store structured data with Santo Domingo and nationwide
   assert.match(page, /Santo Domingo/);
   assert.match(page, /República Dominicana/);
   assert.match(page, /whatsappLink/);
+  assert.match(page, /url:\s*"https:\/\/www\.jbcell\.com\//);
 });

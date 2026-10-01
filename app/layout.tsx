@@ -4,7 +4,7 @@ import CookieConsent from "@/components/CookieConsent";
 import PwaRegister from "@/components/PwaRegister";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paginajb.vercel.app"),
+  metadataBase: new URL("https://www.jbcell.com"),
   title: "Tienda de celulares y accesorios en Santo Domingo | JBCELL",
   description:
     "Compra celulares, accesorios, audífonos, cargadores, relojes inteligentes y más en JBCELL. Entrega en Santo Domingo y envíos a toda República Dominicana por WhatsApp.",

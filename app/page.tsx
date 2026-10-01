@@ -12,7 +12,7 @@ const storeSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "JBCELL",
-  url: "https://paginajb.vercel.app/",
+  url: "https://www.jbcell.com/",
   description:
     "Tienda de celulares, accesorios y tecnología con entrega en Santo Domingo y envíos a toda República Dominicana.",
   areaServed: [

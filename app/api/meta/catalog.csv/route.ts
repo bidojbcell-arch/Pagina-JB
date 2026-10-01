@@ -15,7 +15,7 @@ export async function GET() {
     .order("orden", { ascending: true })
     .order("created_at", { ascending: false });
   if (error) return new NextResponse("Catalog unavailable", { status: 503 });
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://paginajb.vercel.app").replace(/\/$/, "");
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.jbcell.com").replace(/\/$/, "");
   return new NextResponse(catalogCsv((data ?? []) as Producto[], baseUrl), {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
