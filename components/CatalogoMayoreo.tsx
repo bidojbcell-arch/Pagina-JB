@@ -58,7 +58,6 @@ export default function CatalogoMayoreo({ productos }: { productos: Producto[] }
   const agregar = (producto: Producto, cantidad: number) => {
     const cantidadFinal = Math.max(cantidadInicialMayoreo(producto), cantidad);
     setItems((actuales) => { const encontrado = actuales.find((item) => item.producto.id === producto.id); return encontrado ? actuales.map((item) => item.producto.id === producto.id ? { ...item, cantidad: item.cantidad + cantidadFinal } : item) : [...actuales, { producto, cantidad: cantidadFinal }]; });
-    setCarritoAbierto(true);
   };
   const actualizarCantidad = (id: string, cantidad: number) => setItems((actuales) => cantidad <= 0 ? actuales.filter((item) => item.producto.id !== id) : actuales.map((item) => item.producto.id === id ? { ...item, cantidad: Math.max(cantidadInicialMayoreo(item.producto), cantidad) } : item));
   if (productos.length === 0) return <p className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">Pronto publicaremos productos disponibles al por mayor.</p>;

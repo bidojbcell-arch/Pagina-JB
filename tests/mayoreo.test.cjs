@@ -77,3 +77,11 @@ test("el contador mayorista muestra las unidades agregadas, igual que el carrito
   ]), 7);
 });
 
+test("agregar al carrito mayorista no abre el panel automáticamente", () => {
+  const catalogo = fs.readFileSync(require.resolve("../components/CatalogoMayoreo.tsx"), "utf8");
+  const handler = catalogo.match(/const agregar = \(producto: Producto, cantidad: number\) => \{([\s\S]*?)\n  \};/);
+
+  assert.ok(handler, "debe existir el manejador de agregar al carrito mayorista");
+  assert.doesNotMatch(handler[1], /setCarritoAbierto\(true\)/);
+});
+
