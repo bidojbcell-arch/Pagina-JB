@@ -23,6 +23,7 @@ const {
   totalCarritoMayoreo,
   mensajeCarritoMayoreo,
   productosMayoreoPorPagina,
+  cantidadTotalCarritoMayoreo,
 } = require("../lib/mayoreo.ts");
 
 test("un pedido mayorista inicia en el mínimo configurado y calcula su total", () => {
@@ -67,5 +68,12 @@ test("el catálogo mayorista muestra diez productos por página", () => {
 
   assert.equal(resultado.totalPaginas, 3);
   assert.deepEqual(resultado.productos, productos.slice(10, 20));
+});
+
+test("el contador mayorista muestra las unidades agregadas, igual que el carrito al detalle", () => {
+  assert.equal(cantidadTotalCarritoMayoreo([
+    { producto: { nombre: "K52", precio_mayoreo: 850, minimo_mayoreo: 3 }, cantidad: 3 },
+    { producto: { nombre: "IA18", precio_mayoreo: 500, minimo_mayoreo: 2 }, cantidad: 4 },
+  ]), 7);
 });
 

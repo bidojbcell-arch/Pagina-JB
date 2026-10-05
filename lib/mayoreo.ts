@@ -34,6 +34,10 @@ export function totalCarritoMayoreo(items: ItemCarritoMayoreo[]) {
   return items.reduce((total, { producto, cantidad }) => total + totalMayoreo(producto, cantidad), 0);
 }
 
+export function cantidadTotalCarritoMayoreo(items: ItemCarritoMayoreo[]) {
+  return items.reduce((total, item) => total + item.cantidad, 0);
+}
+
 export function mensajeCarritoMayoreo(items: ItemCarritoMayoreo[]) {
   const lineas = items.map(({ producto, cantidad }) => {
     const cantidadFinal = Math.max(cantidadInicialMayoreo(producto), cantidad);
